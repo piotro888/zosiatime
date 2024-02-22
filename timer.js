@@ -83,7 +83,7 @@ function refresh_time() {
         let color = "white";
         if (next_diff && !(next_diff.getHours()-1)) {
             if (next_diff.getMinutes() < 1)
-                color = "orange";
+                color = "orange"; 
             else if (next_diff.getMinutes() < 3)
                 color = "yellow";
         }
@@ -104,6 +104,15 @@ function refresh_time() {
 
 function init() {
     window.setInterval(refresh_time, 100);
+    
+    let time = new Date().getTime()/1000;
+    
+    for (const e of ld.events) {
+        let start = new Date(e.start*1000);
+        let end = new Date(e.end*1000);
+        console.log(">" + e.title + "< " + start + " " + start.getHours() + ":" + start.getMinutes() + " - " + end + " " + end.getHours() + ":" + end.getMinutes());
+    }
+
 }
 
 window.addEventListener('DOMContentLoaded', init, false);
